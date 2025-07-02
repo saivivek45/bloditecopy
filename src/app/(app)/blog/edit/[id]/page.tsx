@@ -1,14 +1,14 @@
 'use client'
 
 import StartupForm from '@/components/custom/EditBlogForm'
-import React from 'react'
+import React, { use } from 'react'
 
 interface Props {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 const page = ({ params }: Props) => {
-  const { id } = params
+  const { id } = use(params)
   return (
     <>
       <StartupForm id={id} />

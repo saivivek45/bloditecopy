@@ -3,7 +3,7 @@
 import type { ApiResponse } from "@/types/apiResponse"
 import type { Blog } from "@/types/blog"
 import axios, { type AxiosError } from "axios"
-import { useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
 import { toast } from "sonner"
 import BlogCard from "@/components/custom/BlogCard"
 import { Calendar, Mail, BookOpen } from "lucide-react"
@@ -12,10 +12,8 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
 import Link from "next/link"
 
-type Props = {
-  params: {
-    id: string
-  }
+interface Props {
+  params: Promise<{ id: string }>
 }
 
 type UserData = {
@@ -26,7 +24,7 @@ type UserData = {
 } | null
 
 const Page = ({ params }: Props) => {
-  const { id } = params
+  const { id } = use(params)
   const [data, setData] = useState<UserData>(null)
   const [loading, setLoading] = useState<boolean>(false)
 

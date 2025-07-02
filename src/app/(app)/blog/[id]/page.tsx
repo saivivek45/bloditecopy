@@ -1,8 +1,8 @@
 "use client"
 
-import type { ApiResponse } from "@/types/apiResponse"
+import { use } from "react"
 import type { Blog } from "@/types/blog"
-import axios, { type AxiosError } from "axios"
+import axios, { AxiosError } from "axios"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
 import { Calendar, Tag, Clock, Eye, FileText } from "lucide-react"
@@ -18,16 +18,19 @@ import remarkBreaks from "remark-breaks"
 import rehypeHighlight from "rehype-highlight"
 import rehypeSlug from "rehype-slug"
 import "highlight.js/styles/github-dark.css"
+import { ApiResponse } from "@/types/apiResponse"
 
 interface Props {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 export default function BlogPage({ params }: Props) {
-  const { id } = params
+  const { id } = use(params)
+
   const [blog, setBlog] = useState<Blog | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [viewMode, setViewMode] = useState<"preview" | "raw">("preview")
+
 
   useEffect(() => {
     const fetchBlog = async () => {
