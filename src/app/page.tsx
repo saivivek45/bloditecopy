@@ -185,7 +185,14 @@ export default function LandingPage() {
               {/* Logo - Far Left */}
               <Link href="/" className="logo-hover animate-slide-in stagger-1 flex-shrink-0">
                 <div className="flex items-center space-x-3">
-                  <Image src="/vaid.png" alt="Vaid PR Logo" width={40} height={40} priority />
+                  <Image
+                    src="/vaid.png"
+                    alt="Vaid PR Logo"
+                    width={40}
+                    height={40}
+                    priority
+                    style={{ height: "auto" }}
+                  />
                   <span className="text-xl font-bold text-gray-900 dark:text-white">Vaid PR Blogs</span>
                 </div>
               </Link>
