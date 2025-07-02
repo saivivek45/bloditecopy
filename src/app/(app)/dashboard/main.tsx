@@ -43,7 +43,7 @@ const BlogApp = () => {
     try {
       setIsLoading(true)
       const response = await axios.get<ApiResponse>("/api/blog/getAllBlogs")
-      toast(response.data.message)
+      // toast(response.data.message)
       setBlogs(response.data.data)
       blogCache.current = response.data.data 
     } catch (error) {
