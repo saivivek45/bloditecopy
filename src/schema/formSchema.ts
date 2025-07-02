@@ -5,5 +5,5 @@ export const formSchema = z.object({
   description: z.string().min(1, "Description is required").max(200, "Description must be less than 200 characters"),
   category: z.string().min(1, "Category is required"),
   imageUrl: z.string().url("Please enter a valid URL").min(1, "Image URL is required"),
-  content: z.string().min(1, "Blog pitch is required").max(1000, "Blog pitch must be less than 1000 characters"),
+  content: z.string().min(1, "Blog pitch is required")
 })
