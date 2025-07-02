@@ -19,13 +19,11 @@ import rehypeHighlight from "rehype-highlight"
 import rehypeSlug from "rehype-slug"
 import "highlight.js/styles/github-dark.css"
 import { ApiResponse } from "@/types/apiResponse"
+import { useParams } from "next/navigation"
 
-interface Props {
-  params: Promise<{ id: string }>
-}
-
-export default function BlogPage({ params }: Props) {
-  const { id } = use(params)
+export default function BlogPage() {
+  const params = useParams<{ id: string }>();
+  const id: string = params.id;
 
   const [blog, setBlog] = useState<Blog | null>(null)
   const [isLoading, setIsLoading] = useState(true)

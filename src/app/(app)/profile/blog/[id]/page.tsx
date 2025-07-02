@@ -29,17 +29,16 @@ import remarkBreaks from "remark-breaks"
 import rehypeHighlight from "rehype-highlight"
 import rehypeSlug from "rehype-slug"
 import "highlight.js/styles/github-dark.css"
-import { useRouter } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import Link from "next/link"
 
-interface Props {
-  params: { id: string }
-}
 
-export default function BlogPage({ params }: Props) {
+export default function BlogPage() {
   const router = useRouter();
 
-  const { id } = params
+  const param = useParams<{ id: string }>();
+  const id: string = param.id;
+
   const [blog, setBlog] = useState<Blog | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [viewMode, setViewMode] = useState<"preview" | "raw">("preview")
