@@ -181,6 +181,6 @@ Pull requests are welcome! For major changes, please open an issue first.
 
 ---
 
-## 📬 Contact
+## 📬 Developer:
 
 📧 Email: pratikraj220011@gmail.com
