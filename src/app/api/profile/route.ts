@@ -1,7 +1,18 @@
 import prisma from "@/config/db.config";
 import { NextRequest, NextResponse } from "next/server";
+import { authOptions } from "../auth/[...nextauth]/option";
+import { getServerSession } from "next-auth";
 
 export async function POST(req: NextRequest){
+  const session = await getServerSession(authOptions);
+  
+  if (!session) {
+    return NextResponse.json(
+      { error: "Unauthorized", message: "You must be logged in." },
+      { status: 401 }
+    );
+  }
+
   const { id } = await req.json();
   try {
     if(!id) {

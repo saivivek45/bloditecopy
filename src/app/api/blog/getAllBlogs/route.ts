@@ -1,7 +1,18 @@
 import prisma from "@/config/db.config";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
+import { authOptions } from "../../auth/[...nextauth]/option";
 
 export async function GET(req: NextRequest) {
+  const session = await getServerSession(authOptions);
+
+    if (!session) {
+      return NextResponse.json(
+        { error: "Unauthorized", message: "You must be logged in." },
+        { status: 401 }
+      );
+    }
+
   try {
     const data = await prisma.blog.findMany({
       select: {
