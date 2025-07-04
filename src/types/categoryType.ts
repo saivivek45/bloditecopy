@@ -15,4 +15,5 @@ export const categories: CategoryOption[] = [
   { value: "sports", label: "Sports" },
   { value: "finance", label: "Finance" },
   { value: "animal", label: "Animal" },
+  { value: "nature", label: "Nature" }
 ]
