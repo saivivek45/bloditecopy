@@ -38,7 +38,7 @@ export default function BlogPage() {
           id,
         })
 
-        toast.success(response.data.message)
+        // toast.success(response.data.message)
         setBlog(response.data.data)
       } catch (error) {
         console.error("Error during fetching:", error)

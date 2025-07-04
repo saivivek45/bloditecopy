@@ -51,7 +51,7 @@ export default function BlogPage() {
         const response = await axios.post<ApiResponse>(`/api/blog/getBlogById`, {
           id,
         })
-        toast.success(response.data.message)
+        // toast.success(response.data.message)
         setBlog(response.data.data)
       } catch (error) {
         console.error("Error during fetching:", error)
@@ -82,14 +82,14 @@ export default function BlogPage() {
   }
 
   const handleEditBlog = () => {
-    toast.info("Redirecting to edit page...")
+    // toast.info("Redirecting to edit page...")
   }
 
   const handleDeleteBlog = async () => {
     try {
       setIsDeleting(true)
       const response = await axios.delete<ApiResponse>(`/api/blog/delete/${id}`)
-      toast.success(response?.data?.message)
+      // toast.success(response?.data?.message)
       router.back();
     } catch (error) {
       console.error("Error during deletion:", error)

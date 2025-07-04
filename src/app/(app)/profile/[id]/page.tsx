@@ -35,7 +35,7 @@ const Page = () => {
       })
       const userData = response?.data?.data
       setData(userData)
-      toast.success(response?.data?.message)
+      // toast.success(response?.data?.message)
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>
       const errorMessage = axiosError?.response?.data?.message || "Failed to fetch user profile"

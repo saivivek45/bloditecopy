@@ -76,7 +76,7 @@ const BlogApp = () => {
     setIsSearching(true)
     try {
       const response = await axios.get<ApiResponse>(`/api/blog/getBlogByParam?id=${data.query}`)
-      toast(response.data.message)
+      // toast(response.data.message)
       setBlogs(response.data.data)
     } catch (error) {
       console.error("Error during fetching:", error)
