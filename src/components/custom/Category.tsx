@@ -42,7 +42,7 @@ const CategoryPage = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-slate-50 to-blue-50 dark:from-gray-900 dark:via-slate-900 dark:to-slate-800 transition-all duration-500">
       <div className="container mx-auto px-6 py-10 space-y-10">
         <div className="animate-fade-in-up">
-          <h1 className="text-5xl md:text-6xl font-bold mb-3 text-gray-800 dark:text-gray-100 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-6xl font-bold mb-3 text-transparent dark:text-gray-100 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text">
             Categories
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">Explore content across different topics</p>
