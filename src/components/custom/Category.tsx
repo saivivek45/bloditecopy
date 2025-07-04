@@ -9,10 +9,12 @@ import { toast } from "sonner"
 import BlogCard from "./BlogCard"
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert"
 import { CheckCircle2Icon, Terminal } from "lucide-react"
+import Link from "next/link"
+import { Blog } from "@/types/blog"
 
 const CategoryPage = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("technology")
-  const [categoryData, setCategoryData] = useState([])
+  const [categoryData, setCategoryData] = useState<Blog[]>([])
   const [loading, setLoading] = useState<boolean>(false)
 
   const handleCategoryClick = async (categoryValue: string) => {
@@ -96,7 +98,9 @@ const CategoryPage = () => {
                   style={{ animationDelay: `${300 + index * 100}ms` }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 dark:from-blue-400/20 dark:to-indigo-400/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
-                  <BlogCard blog={blog} />
+                  <Link href={`/blog/${blog.id}`}>
+                    <BlogCard blog={blog} />
+                  </Link>
                 </div>
               ))}
             </div>

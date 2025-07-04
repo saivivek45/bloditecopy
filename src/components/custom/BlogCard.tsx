@@ -6,7 +6,6 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
 import type { Blog } from "@/types/blog"
-import Link from "next/link"
 
 interface BlogCardProps {
   blog: Blog
@@ -22,8 +21,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
   }
 
   return (
-    <Link href={`/blog/${blog.id}`}>
-      <Card
+    <Card
       className="group overflow-hidden hover:shadow-xl transition-all duration-300 ease-out bg-white dark:bg-gray-900 cursor-pointer transform hover:-translate-y-1 border border-gray-200 dark:border-gray-700 shadow-sm p-0"
     >
       {/* Image Container */}
@@ -68,8 +66,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
 
       {/* Subtle bottom accent */}
       <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-400 dark:bg-gray-600 group-hover:w-full transition-all duration-400 ease-out" />
-      </Card> 
-    </Link>
+    </Card> 
   )
 }
 
