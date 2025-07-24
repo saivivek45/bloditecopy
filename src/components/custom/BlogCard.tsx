@@ -25,13 +25,12 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
       className="group overflow-hidden hover:shadow-xl transition-all duration-300 ease-out bg-white dark:bg-gray-900 cursor-pointer transform hover:-translate-y-1 border border-gray-200 dark:border-gray-700 shadow-sm p-0"
     >
       {/* Image Container */}
-      <div className="relative h-48 w-full overflow-hidden">
+      <div className="relative h-48 w-full overflow-hidden group">
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300 z-10" />
-        <Image
+        <img
           src={blog.imageURL || "/placeholder.svg"}
           alt={blog.title}
-          fill
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
       </div>
 
