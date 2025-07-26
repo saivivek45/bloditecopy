@@ -6,12 +6,17 @@ import axios, { type AxiosError } from "axios"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
 import BlogCard from "@/components/custom/BlogCard"
-import { Calendar, Mail, BookOpen } from "lucide-react"
+import { Calendar, Mail, BookOpen, Settings, Lock } from "lucide-react"
 import { Card, CardContent, CardTitle, CardDescription } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import UpdateProfileForm from "@/components/custom/UpdateProfileForm"
+import ChangePasswordForm from "@/components/custom/ChangePasswordForm"
 import Link from "next/link"
 import { useParams } from "next/navigation"
+import { useSession } from "next-auth/react"
 
 type UserData = {
   username: string
@@ -23,9 +28,12 @@ type UserData = {
 const Page = () => {
   const param = useParams<{ id: string }>();
   const id: string = param.id;
+  const { data: session } = useSession();
 
   const [data, setData] = useState<UserData>(null)
   const [loading, setLoading] = useState<boolean>(false)
+  const [isUpdateProfileOpen, setIsUpdateProfileOpen] = useState(false)
+  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false)
 
   const loadData = async () => {
     setLoading(true)
@@ -218,6 +226,46 @@ const Page = () => {
                     <span>Joined {formatDate(data?.createdAt)}</span>
                   </div>
                 </div>
+
+                {/* Action Buttons - Only show for own profile */}
+                {session?.user?.id === id && (
+                  <div className="flex flex-col sm:flex-row gap-3 pt-4 animate-slide-in" style={{ animationDelay: "0.3s" }}>
+                    <Dialog open={isUpdateProfileOpen} onOpenChange={setIsUpdateProfileOpen}>
+                      <DialogTrigger asChild>
+                        <Button variant="outline" className="flex items-center gap-2">
+                          <Settings className="w-4 h-4" />
+                          Update Profile
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-md">
+                        <UpdateProfileForm
+                          currentEmail={data?.email || ""}
+                          currentName={data?.username || ""}
+                          onSuccess={() => {
+                            setIsUpdateProfileOpen(false)
+                            loadData() // Reload profile data
+                          }}
+                          onCancel={() => setIsUpdateProfileOpen(false)}
+                        />
+                      </DialogContent>
+                    </Dialog>
+
+                    <Dialog open={isChangePasswordOpen} onOpenChange={setIsChangePasswordOpen}>
+                      <DialogTrigger asChild>
+                        <Button variant="outline" className="flex items-center gap-2">
+                          <Lock className="w-4 h-4" />
+                          Change Password
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-md">
+                        <ChangePasswordForm
+                          onSuccess={() => setIsChangePasswordOpen(false)}
+                          onCancel={() => setIsChangePasswordOpen(false)}
+                        />
+                      </DialogContent>
+                    </Dialog>
+                  </div>
+                )}
               </div>
             </div>
           </CardContent>
