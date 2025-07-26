@@ -7,5 +7,5 @@ export const updateProfileSchema = z.object({
 
   name: z
   .string({message: "Invalid Input"})
-  .min(1, {message: "Password should be atleast 8 characters"})
+  .min(1, {message: "Name is required"})
 })
